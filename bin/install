@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+install() {
+  version=$2
+  install_dir=$3
+
+  build_dir=$(mktemp -d)
+  cd $build_dir
+
+  curl -fSL -JO https://github.com/mysql/mysql-server/archive/$version.tar.gz
+  tar -xzf mysql*.gz
+  rm -rf mysql*.gz
+  cd mysql*
+  cmake -DCMAKE_INSTALL_PREFIX=$ASDF_INSTALL_PATH -DDOWNLOAD_BOOST=ON -DWITH_BOOST=/$build_dir/my_boost .
+  make -s install || exit 1
+}
+
+install $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
