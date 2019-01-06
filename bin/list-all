@@ -2,4 +2,5 @@
 
 # github_get_versions mysql/mysql-server
 
+# 8.0 only
 echo -n "8.0"
