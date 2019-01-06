@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-github_get_versions mysql/mysql-server
+# github_get_versions mysql/mysql-server
+
+echo -n "8.0"

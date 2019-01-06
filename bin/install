@@ -7,9 +7,9 @@ install() {
   build_dir=$(mktemp -d)
   cd $build_dir
 
-  curl -fSL -JO https://github.com/mysql/mysql-server/archive/$version.tar.gz
-  tar -xzf mysql*.gz
-  rm -rf mysql*.gz
+  curl -fSL -JO https://github.com/mysql/mysql-server/archive/$version.zip
+  unzip -q mysql*.zip
+  rm -rf mysql*.zip
   cd mysql*
   cmake -DCMAKE_INSTALL_PREFIX=$ASDF_INSTALL_PATH -DDOWNLOAD_BOOST=ON -DWITH_BOOST=/$build_dir/my_boost .
   make -s install || exit 1
