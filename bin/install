@@ -11,7 +11,9 @@ install() {
   unzip -q mysql*.zip
   rm -rf mysql*.zip
   cd mysql*
-  cmake -DCMAKE_INSTALL_PREFIX=$ASDF_INSTALL_PATH -DDOWNLOAD_BOOST=ON -DWITH_BOOST=$build_dir/my_boost .
+  mkdir -p build
+  cmake -DCMAKE_INSTALL_PREFIX=$ASDF_INSTALL_PATH -DDOWNLOAD_BOOST=ON -DWITH_BOOST=$build_dir/my_boost ./build
+  cd build
   make -s install || exit 1
 }
 
