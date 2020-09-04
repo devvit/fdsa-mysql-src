@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# github_get_versions mysql/mysql-server
+raw_versions="$(rsync -arv rsync://mysql.he.net/mysql/Downloads/MySQL-\*/mysql-\[0-9\]\*.zip 2>&1 | awk '/mysql-/{ print $NF }')"
+versions="$(echo $raw_versions | tr ' ' '\n' |  sed -e 's/mysql-\([0-9.]*\).*/\1/' | sed -e 's/\.$//' | sort -u)"
 
-# 8.0 only
-echo -n "8.0"
+echo $versions
